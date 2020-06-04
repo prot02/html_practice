@@ -1,0 +1,222 @@
+@charset "utf-8";
+
+/*
+1. inlineとfloatの使い道
+　 floatは複数タグ？？
+
+2. 親要素のサイズ指定をしない場合
+
+!importantを指定すると必ずそのスタイルを適用する
+*/
+
+/*=====================================
+全体的なスタイル
+=====================================*/
+*{
+    margin:0;
+    padding:0;
+}
+
+
+body{
+    font-size:95%;/*フォントのサイズ*/
+    font-family:"MS ゴシック",sans-serif;/*フォントの種類をMS ゴシックにする。無い場合はサンセリフ系のフォントにする*/
+    line-height:1.5;/*行間を1.5倍にする 余白=(行間-フォントサイズ)/2 */
+    background-color:#cccccc;
+    background-image:url("images/bg_body.png");
+    color:#333333;/*文字を濃い目のグレーにする*/
+
+}
+
+div#pagebody{
+    background-color:#ffffff;
+    background-image:url("images/bg_pagebody.png");
+    background-repeat: repeat-y;
+    Width:1000px;
+    margin:0 auto; /*マージ値、上下0、左右自動(中央に良く)*/
+
+}
+
+div#header{
+    height:80px;
+}
+#header h1{
+    padding:10px 0px 5px 20px;
+    font-size:18px;
+    font-family: Arial, Arial, Helvetica, sans-serif;
+}
+#header h1 a{
+    text-decoration:none;
+}
+
+/*IEなどではリンク設定がされている画像にボーダーが表示されることがあるため、消す宣言をしている*/
+img{border:0;/*画像のボーダーを0にする*/}
+
+ul#menu{
+    /*メインメニュー全体の幅と高さ*/   
+    width: 960px;
+    height:50px;
+    margin:0 20px;/*外側余白*/
+ 
+}
+
+#menu li{
+    /*display: inline;*/
+    list-style-type:none; /*リストの先頭にある●(リストマーカー)を非表示*/
+    float:left;/*浮動している。左寄せにする*/
+    
+}
+#menu li a{
+    display: block;/*クリックできる範囲を親のサイズと合わせる*/
+    background-color:navy;
+    color:#ffffff;
+    width: 240px;
+    height:35px;
+    padding:15px 0px 0px 0px;/*内側余白*/
+    text-align:center;/*テキストを真ん中に持ってくる(横)*/
+    text-decoration:none;/*下線などの装飾をなくす*/
+    background-image:url("images/bg_menu1.png");
+    background-repeat:no-repeat;/*画像の繰り返し表示無し*/
+
+}
+
+#menu li a:hover{
+    background-color:#000066;
+    background-image:url("images/bg_menu2.png");
+}
+
+div#img_index{
+    width:960px;
+    height:360px;
+    margin:5px 20px;
+}
+div#img_subpage{
+    width:960px;
+    height:240px;
+    margin:5px 20px;
+}
+
+/*==============================
+ サブメニュ(左カラム)
+==============================*/
+h2{
+    width: 160px;
+    height:43px;
+    padding:17px 0px 0px 100px;
+    font-size:16px;
+    background-image: url(images/bg_h2.png);
+    background-repeat: no-repeat;
+    background-color:#000033;
+    color:#ffffff;
+}
+div#submenu{
+    width:260px;
+    margin:10px 10px 10px 25px;
+    float:left;
+}
+div#submenu ul li{
+    list-style-type: none;
+}
+div#submenu ul li a{
+    display:block;    
+    height:45px;
+    padding:15px 0px 0px 30px;
+    text-decoration:none;
+    border-bottom:1px dotted gray; /*リンク領域の下部にボーダーをつける*/
+    background-image: url("images/bg_submenu.png");
+    background-repeat: no-repeat;
+    color:#333333;
+}
+div#submenu ul li a:hover{
+    text-decoration: underline;/*マウスが乗ったら下線を表示*/
+}
+
+/*リストの一番最初の要素に対してのスタイル*/
+div#submenu ul li:first-child a{
+    border-top:1px dotted gray;
+}
+
+/*要素の直前という意味の疑似要素、今回の場合はa要素の直前*/
+div#submenu ul li a:before{
+    content:url("images/icon_submenu.png");/*アイコン画像を挿入*/
+    margin:0px 10px 0px 0px;
+    vertical-align:text-top;/*縦方向の表示位置、画像をa要素のテキストの上端に合わせる。*/
+}
+
+/*==============================
+ サブメニュ(右カラム)
+==============================*/
+div#info{
+    width:660px;
+    float:left;
+    padding:10px 20px 0px 0px;
+}
+
+h3{
+    font-size:14px;
+    width:660px;
+    padding:10px 0px 10px 20px;
+    background-color:#003399;
+    color:#ffffff;
+    border-radius:3px;/*角丸にする*/
+
+    /*css3が新規格で仕様がはっきりしていなかったためブラウザ側が先行実装する際に拡張機能と分るようにするための識別子。今は必要ない(ベンダープレフィックス)*/
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    -o-border-radius:3px;
+    -ms-border-radius:3px;
+}
+
+p{
+    width:660px;
+    margin:10px;
+    text-indent:1em; /*一行目のインデント幅指定。emはフォントの高さを1とした値なので1文字分インデントする。*/
+
+}
+
+.infoimg_index{
+    width:200px;
+    height:150px;
+    margin:0px 0px 20px 20px;
+    float:right;
+}
+
+.infoimg_subpage{
+    width:400px;
+    height:300px;
+    margin:0px 20px 20px 0px;
+    float:left;
+}
+
+.infoimg_tel{
+    display:block;
+    width:400px;
+    height:80px;
+}
+
+hr{
+    clear:both; /*フロートの配置をクリアにする*/
+    width:680px;
+    margin:10px 0px;
+    border:1px dotted #cccccc;/*区切り線をグレーの点線で表示*/
+}
+
+div#footer{
+    clear:both;
+    height:40px;
+    padding:10px 0px 0px 0px;
+    font-size:x-small;/*フォントサイズを小さくする*/
+    text-align:center;/*横方向に中央*/
+}
+
+/*=========================
+備考情報
+=========================*/
+div.remarks{
+    margin:0px 10px 10px 10px;
+
+}
+
+h4{
+    color:#000066;
+}
